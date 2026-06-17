@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, Lightbulb, ListChecks, Target } from "lucide-react";
-import { mandatoryDocs, getDoc } from "@/content";
+import { mandatoryDocs, getDoc, getDocExample } from "@/content";
 import { renderMarkdown } from "@/lib/markdown";
 import { PageHero } from "@/components/page-hero";
 import { TemplateViewer } from "@/components/template-viewer";
@@ -35,6 +35,8 @@ export default async function DocumentDetailPage({
   const prev = idx > 0 ? mandatoryDocs[idx - 1] : null;
   const next = idx < mandatoryDocs.length - 1 ? mandatoryDocs[idx + 1] : null;
   const html = renderMarkdown(doc.template);
+  const exampleMd = getDocExample(doc.id);
+  const exampleHtml = exampleMd ? renderMarkdown(exampleMd) : undefined;
 
   return (
     <div>
@@ -106,8 +108,12 @@ export default async function DocumentDetailPage({
           {/* Right: template */}
           <div className="lg:sticky lg:top-20">
             <TemplateViewer
-              markdown={doc.template}
-              html={html}
+              template={{ markdown: doc.template, html }}
+              example={
+                exampleMd && exampleHtml
+                  ? { markdown: exampleMd, html: exampleHtml }
+                  : undefined
+              }
               filename={doc.id}
               title={`${doc.title} — template`}
             />

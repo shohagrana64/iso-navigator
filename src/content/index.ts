@@ -6,6 +6,9 @@ import { organizationalControls } from "./annexA-organizational";
 import { peopleControls, physicalControls } from "./annexA-people-physical";
 import { technologicalControls } from "./annexA-technological";
 import { mandatoryDocs } from "./mandatory-docs";
+import { docExamples } from "./doc-examples";
+import { controlExamplesA } from "./control-examples-1";
+import { controlExamplesB } from "./control-examples-2";
 
 export * from "./types";
 export { mandatoryDocs } from "./mandatory-docs";
@@ -97,3 +100,19 @@ export function controlIdFromSlug(slug: string): string {
 
 export const totalControls = allControls.length;
 export const totalDocs = mandatoryDocs.length;
+
+/** Filled-in worked examples keyed by id (doc slug / control id). */
+export const controlExamples: Record<string, string> = {
+  ...controlExamplesA,
+  ...controlExamplesB,
+};
+
+export function getDocExample(id: string): string | undefined {
+  return docExamples[id];
+}
+
+export function getControlExample(id: string): string | undefined {
+  return controlExamples[id];
+}
+
+export { docExamples };

@@ -35,6 +35,7 @@ export function SiteFooter() {
               { href: "/roadmap", label: "Implementation roadmap" },
               { href: "/documents", label: "Document templates" },
               { href: "/controls", label: "Annex A controls" },
+              { href: "/risk-calculator", label: "Risk calculator" },
             ]}
           />
           <div>

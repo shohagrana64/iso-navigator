@@ -14,6 +14,7 @@ import {
   controlIdFromSlug,
   controlSlug,
   getControl,
+  getControlExample,
 } from "@/content";
 import { renderMarkdown } from "@/lib/markdown";
 import { themeStyles } from "@/lib/theme-style";
@@ -53,6 +54,8 @@ export default async function ControlDetailPage({
   const next = idx < allControls.length - 1 ? allControls[idx + 1] : null;
   const s = themeStyles[control.theme];
   const html = renderMarkdown(control.template);
+  const exampleMd = getControlExample(control.id);
+  const exampleHtml = exampleMd ? renderMarkdown(exampleMd) : undefined;
 
   return (
     <div>
@@ -145,8 +148,12 @@ export default async function ControlDetailPage({
           {/* Right: template */}
           <div className="lg:sticky lg:top-20">
             <TemplateViewer
-              markdown={control.template}
-              html={html}
+              template={{ markdown: control.template, html }}
+              example={
+                exampleMd && exampleHtml
+                  ? { markdown: exampleMd, html: exampleHtml }
+                  : undefined
+              }
               filename={`${control.id}-${control.title
                 .toLowerCase()
                 .replace(/[^a-z0-9]+/g, "-")

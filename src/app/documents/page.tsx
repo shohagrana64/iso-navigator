@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, FileText, Lock } from "lucide-react";
 import { mandatoryDocs } from "@/content";
 import { PageHero } from "@/components/page-hero";
+import { ExportAll } from "@/components/export-all";
 
 export const metadata: Metadata = {
   title: "Document Templates",
@@ -29,7 +30,9 @@ export default function DocumentsPage() {
         eyebrow="Templates"
         title="Every document you need — with a sample to start from"
         description="ISO 27001 asks for a specific set of documented information. Here's each one explained, with a ready-to-adapt template you can copy or download and make your own."
-      />
+      >
+        <ExportAll kind="documents" />
+      </PageHero>
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <DocGroup
           title="Required documented information"

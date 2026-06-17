@@ -49,6 +49,55 @@
   --radius-card: 1rem;
 }
 
+/* ------------------------------------------------------------------ */
+/*  Dark mode — override the same tokens; utilities pick them up via   */
+/*  var(). Toggled by adding `.dark` to <html>.                         */
+/* ------------------------------------------------------------------ */
+.dark {
+  color-scheme: dark;
+
+  --color-ink: #e9edf6;
+  --color-ink-soft: #c3cce0;
+  --color-muted: #8b97b0;
+  --color-line: #2a3650;
+  --color-surface: #141b2d;
+  --color-canvas: #0b1020;
+
+  /* Soft brand tints become dark; accent text/buttons brighten */
+  --color-brand-50: #1b2138;
+  --color-brand-100: #232c4a;
+  --color-brand-200: #323d68;
+  --color-brand-600: #6366f1;
+  --color-brand-700: #93a0fb;
+
+  --color-grow-50: #102619;
+  --color-grow-100: #15331f;
+  --color-grow-200: #1f5236;
+  --color-grow-600: #22c55e;
+  --color-grow-700: #56d98a;
+
+  /* Per-theme chip colours (light tint bg + dark text) flipped */
+  --color-amber-50: #2a2012;
+  --color-amber-700: #fcc24d;
+  --color-teal-50: #0e2522;
+  --color-teal-700: #5eead4;
+  --color-sky-50: #0d2233;
+  --color-sky-700: #7dd3fc;
+  --color-violet-50: #211a34;
+  --color-violet-700: #c4b5fd;
+  --color-rose-50: #2a1622;
+  --color-rose-700: #fda4af;
+  --color-orange-50: #2a1c10;
+  --color-orange-700: #fdba74;
+  --color-slate-100: #1b2338;
+  --color-slate-600: #aab4cb;
+
+  --color-org: #818cf8;
+  --color-people: #fbbf24;
+  --color-physical: #2dd4bf;
+  --color-tech: #38bdf8;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -70,6 +119,22 @@ body {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Print: drop chrome, let content flow */
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  .prose-doc {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  body {
+    background: #fff !important;
   }
 }
 
