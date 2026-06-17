@@ -1,26 +1,161 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ------------------------------------------------------------------ */
+/*  ISO 27001 Navigator — design tokens                                */
+/*  Calm, trustworthy, professional. Learning indigo + progress green. */
+/* ------------------------------------------------------------------ */
+
+@theme {
+  /* Brand */
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
+
+  /* Progress / success green */
+  --color-grow-50: #f0fdf4;
+  --color-grow-100: #dcfce7;
+  --color-grow-200: #bbf7d0;
+  --color-grow-500: #22c55e;
+  --color-grow-600: #16a34a;
+  --color-grow-700: #15803d;
+
+  /* Neutrals (slate) — kept explicit for consistent surfaces */
+  --color-ink: #0f172a;
+  --color-ink-soft: #334155;
+  --color-muted: #64748b;
+  --color-line: #e2e8f0;
+  --color-surface: #ffffff;
+  --color-canvas: #f7f8fc;
+
+  /* Per-theme accents for the four Annex A control families */
+  --color-org: #4f46e5; /* Organizational — indigo */
+  --color-people: #d97706; /* People — amber */
+  --color-physical: #0d9488; /* Physical — teal */
+  --color-tech: #0284c7; /* Technological — sky */
+
+  /* Fonts (wired to next/font variables in layout.tsx) */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Radii */
+  --radius-card: 1rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Headings use the display font by default */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* Rendered Markdown template / prose styling */
+.prose-doc {
+  font-size: 0.925rem;
+  line-height: 1.7;
+  color: var(--color-ink-soft);
+}
+.prose-doc h1 {
+  font-size: 1.5rem;
+  margin: 0 0 0.75rem;
+  color: var(--color-ink);
+}
+.prose-doc h2 {
+  font-size: 1.15rem;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--color-ink);
+}
+.prose-doc h3 {
+  font-size: 1rem;
+  margin: 1.25rem 0 0.4rem;
+  color: var(--color-ink);
+}
+.prose-doc p {
+  margin: 0.6rem 0;
+}
+.prose-doc ul {
+  margin: 0.5rem 0;
+  padding-left: 1.25rem;
+  list-style: disc;
+}
+.prose-doc ol {
+  margin: 0.5rem 0;
+  padding-left: 1.25rem;
+  list-style: decimal;
+}
+.prose-doc li {
+  margin: 0.2rem 0;
+}
+.prose-doc strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+.prose-doc table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.9rem 0;
+  font-size: 0.85rem;
+  display: block;
+  overflow-x: auto;
+}
+.prose-doc th,
+.prose-doc td {
+  border: 1px solid var(--color-line);
+  padding: 0.45rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+.prose-doc th {
+  background: var(--color-brand-50);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.prose-doc code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--color-brand-50);
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.3rem;
+}
+.prose-doc hr {
+  border: 0;
+  border-top: 1px solid var(--color-line);
+  margin: 1.25rem 0;
+}
+.prose-doc a {
+  color: var(--color-brand-700);
+  text-decoration: underline;
 }

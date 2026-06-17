@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ISO 27001 Navigator
 
-## Getting Started
+A friendly, beginner-first website for learning **ISO/IEC 27001:2022** and
+getting an organisation ready for certification. It explains the standard in
+plain language and gives ready-to-use, copy/download templates for every
+required document and all 93 Annex A controls.
 
-First, run the development server:
+## What's inside
+
+- **Learn** (`/learn`) — what ISO 27001 is, key concepts (ISMS, CIA triad,
+  clauses vs Annex A, the Statement of Applicability, certification process),
+  a 30-term glossary, and 14 FAQs.
+- **Roadmap** (`/roadmap`) — a 9-phase implementation plan from leadership
+  buy-in to the certification audit, with the relevant templates linked at
+  each phase.
+- **Documents** (`/documents`) — 19 mandatory and recommended documents, each
+  with why-it-matters, what-to-include, beginner tips, and a full sample
+  template you can **copy** or **download as Markdown**.
+- **Controls** (`/controls`) — all **93 Annex A:2022 controls** as a searchable,
+  filterable checklist with browser-saved progress. Each control has a plain
+  explanation, implementation steps, audit evidence, and a sample template.
+
+## Tech
+
+- Next.js 16 (App Router) · React 19 · TypeScript
+- Tailwind CSS v4 (CSS-based theme tokens in `src/app/globals.css`)
+- `marked` for Markdown rendering · `lucide-react` for icons
+- Content authored as typed data in `src/content/` — the UI is a thin
+  rendering layer over it.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Build & serve a production build:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The whole site prerenders to static HTML (every control and document is its
+own static page), so it can also be hosted on any static host.
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+  app/                 # routes (home, learn, roadmap, documents, controls)
+  components/          # header, footer, template viewer, controls explorer, …
+  content/             # typed data: controls, documents, learning, roadmap
+  lib/                 # markdown renderer, theme styles, helpers
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## A note
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Templates are starting points to adapt to your organisation. This is an
+educational resource, not legal advice or a guarantee of certification, and is
+not affiliated with or endorsed by ISO/IEC.
